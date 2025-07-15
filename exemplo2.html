@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eletrodos</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+
+<body>
+
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      color: #000;
+    }
+
+    .container {
+      max-width: 800px;
+      border: 1px solid #ccc;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 24px;
+      background-color: #f2f2f2;
+      padding: 10px;
+      margin: 0;
+    }
+
+    .subtitulo {
+      font-weight: bold;
+      margin-top: 20px;
+      background-color: #e8e8e8;
+      padding: 5px 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th, td {
+      border: 1px solid #aaa;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #ddd;
+    }
+
+    .nota {
+      font-size: 0.9em;
+      color: #333;
+    }
+
+    .instrucao {
+      background-color: #f2f2f2;
+      padding: 10px;
+      margin-top: 15px;
+      font-style: italic;
+    }
+  </style>
+
+  <div class="container">
+    <h1>BÖHLER FOX 6010</h1>
+
+    <div class="subtitulo">Classificação</div>
+    <table>
+      <tr>
+        <th>AWS A5.1</th>
+        <th>AWS A5.1M</th>
+      </tr>
+      <tr>
+        <td>E6010</td>
+        <td>E4310</td>
+      </tr>
+    </table>
+
+    <div class="subtitulo">Características e Aplicações Típicas</div>
+    <p>
+      Eletrodo celulósico para aplicações gerais em aços carbono. O metal depositado possui excelentes propriedades mecânicas, além de sua excelente soldabilidade em todas as posições e bom comportamento na soldagem de juntas com generoso abertura de raiz. O eletrodo FOX 6010 possui arco agressivo, o que garante a penetração e boa remoção de escória em peças oxidadas.
+    </p>
+
+    <div class="subtitulo">Materiais de base</div>
+    <p>
+      S235JR, S275JR, S235J2G3, S275J2G3, S355J2G3, P235GH, P265GH, P355T1, P235T2-P355T2, L210NB-L415NB, L290MB-L415MB, P235G1TH, P265G1TH. <br>
+      Pode ser utilizado também em L555MB, L555MB. <br>
+      Especificação API 5L: A, B, X42, X46, X52, X56.
+    </p>
+
+    <div class="subtitulo">Composição química típica do metal depositado</div>
+    <table>
+      <tr>
+        <th>% peso</th>
+        <th>C</th>
+        <th>Si</th>
+        <th>Mn</th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>0,12</td>
+        <td>0,14</td>
+        <td>0,50</td>
+      </tr>
+    </table>
+
+    <div class="subtitulo">Propriedades mecânicas típicas do metal depositado</div>
+    <table>
+      <tr>
+        <th rowspan="2">(*) Tratamento</th>
+        <th colspan="2">Limite de</th>
+        <th rowspan="2">Alongamento<br> A (L₀=5d)</th>
+      </tr>
+      <tr>
+        <th>escoamento<br>(LE) N/mm²</th>
+        <th>resistência<br>(LR) N/mm²</th>
+      </tr>
+      <tr>
+        <td>u</td>
+        <td>330</td>
+        <td>430</td>
+        <td>22</td>
+      </tr>
+    </table>
+    <p class="nota">(*) u - Sem tratamento, como soldado.</p>
+
+    <div class="subtitulo">Dados operacionais</div>
+    <table>
+      <tr>
+        <th>Ø (mm)</th>
+        <th>Ressecagem</th>
+        <th>Corrente (A)</th>
+      </tr>
+      <tr>
+        <td>2,50</td>
+        <td>não permitida</td>
+        <td>30 - 80</td>
+      </tr>
+      <tr>
+        <td>3,25</td>
+        <td>não permitida</td>
+        <td>50 - 120</td>
+      </tr>
+      <tr>
+        <td>4,00</td>
+        <td>não permitida</td>
+        <td>80 - 160</td>
+      </tr>
+      <tr>
+        <td>5,00</td>
+        <td>não permitida</td>
+        <td>100 - 210</td>
+      </tr>
+    </table>
+
+    <div class="subtitulo">Instruções para Soldagem</div>
+    <div class="instrucao">
+      Passe de raiz: Na vertical descendente. Trabalhar em CC (-). <br>
+      (*) Recomendável temperatura de interpasse máxima de 120 °C, dependendo da espessura do material de base.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo Eletrodos</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+
+<body>
+
+<style>
+
+/*Zerando a página*/
+
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}        
+        
+body {
+   background-color: #e7e8ea;
+   font-family: Arial, sans-serif;
+   margin: 0;
+   padding: 0;   
+   width: 100%;
+}
+        
+    /*Cabeçalho*/
+          
+header {
+  background-color: rgba(239, 236, 245, 0.7);
+  color: #aaaaaa;
+  padding: 10px 20px;
+  width: 100%;
+  height: 100px;
+  position: relative;
+  z-index: 100;
+}
+        
+.topo-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+}
+        
+.contatos {  
+  font-size: 16px;
+  padding-top: 20px;
+}
+        
+.redes a img {  
+  width: 40px;
+  margin-left: 10px;
+  padding-top: 20px;
+  vertical-align: middle;
+} 
+        
+.logo{
+  margin: 40px 10px 10px 10px;
+  border-radius: 15px;
+  height: 120px;
+  width: 200px;
+}
+
+/*Estilo da barra de links*/
+
+.menu-secundario {
+  background-color: #004080; /* cor de fundo da barra */
+  padding: 30px 0;
+  width: 100%;
+  height: 80px;
+  text-align: center;
+  font-family: sans-serif; 
+}
+
+.menu-secundario ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: inline-flex;
+  gap: 40px;
+}
+
+.menu-secundario ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  transition: color 0.3s ease;
+  padding: 40px;
+}
+
+.menu-secundario ul li a:hover {
+  color: #ffcc00; /* cor ao passar o mouse */
+}
+
+/*Estilo da barra*/
+
+.barra-container {
+  background-color: #d9d9d9;         /* cor de fundo */
+  padding: 20px 40px;  
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.barra-titulo {
+  margin: 0;
+  font-size: 1.8rem; 
+  color: #ffffff; 
+}
+
+    /*Estilo da seção catálogo*/
+
+.banner-img {
+  width: 100%;
+  height: 300px;
+}
+.catalogo-secao {
+  margin: 40px auto;
+  padding: 20px;
+  max-width: 900px;
+  border-bottom: 1px solid #ccc;
+  background-color: #808080;
+}
+
+.catalogo-secao h3 {
+  font-family: Arial, sans-serif;
+  font-size: 24px;
+  color: #ffd700;
+}
+
+.catalogo-secao h2 {
+  color: #ffd700;
+  font-size: 20px;
+  margin: 30px 0 10px 0;
+  border-left: 6px solid;
+  padding-left: 10px;
+}
+
+.catalogo-secao ul {
+  columns: 3; /* Deixa em 3 colunas automáticas */
+  list-style: none;
+  padding-left: 0;  
+}
+
+.catalogo-secao li {
+  margin-bottom: 8px;
+  color: #ffffff;
+}
+
+    /*Estilo do rodapé*/
+
+.rodape {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  background-color: #004080;
+  padding: 40px 60px;
+  color: white;
+  flex-wrap: wrap;
+}
+
+/* Cada coluna ocupa 1/3 do rodapé */
+.coluna {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Coluna esquerda alinha à esquerda */
+.coluna-esquerda {
+  align-items: flex-start;
+}
+
+/* Coluna direita pode ficar vazia ou futura expansão */
+.coluna-direita {
+  align-items: flex-end;
+}
+
+.logo-endereco {
+  display: flex;
+  gap: 20px;      
+}
+
+.texto-endereco {
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  color: #ffffff;
+}
+
+.endereco-rodape {
+  margin: 0;
+  font-size: 1.4rem;
+  line-height: 1.5;
+}
+
+.links-rodape {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.links-rodape li a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.4rem;
+}
+
+.links-rodape li a:hover {
+  color: #ffcc00;
+}
+
+
+
+    /*Estilo do whatsapp*/
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25d366;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 30px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+  z-index: 1000;
+}
+
+.whatsapp-icon {
+  width: 24px;
+  height: 24px;
+  margin-left: 10px;
+}
+
+.whatsapp-text {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+
+.direitos {
+  color: #ffffff;  
+  margin-top: 40px;
+}
+
+</style>
+
+<!-- Cabeçalho -->
+
+<header>
+  <div class="topo-container">
+    <img src="fotos/logo-gll-branco.png" height="70px" width="70px" alt="logo" class="logo">
+      <div class="contatos">
+        <img src="https://cdn-icons-png.flaticon.com/512/597/597177.png" alt="Telefone" width="20">                          
+        (51) 99612-5242 
+        <img src="https://cdn-icons-png.flaticon.com/512/597/597177.png" alt="Telefone" width="20">
+        (51) 99973-0661 
+        <img src="fotos/email-gll.png" alt="email" width="20">
+        gllsoldas@gllsoldas.net             
+      </div>
+      <div class="redes">
+        <a href="https://www.facebook.com/profile.php?id=61563315416490"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook"></a>
+        <a href="https://www.instagram.com/gllsoldas/"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram"></a>
+        <a href="https://www.linkedin.com/feed/"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn"></a>       
+      </div>
+  </div>
+</header>
+
+<!--Menu secundário-->
+
+    <div class="menu-secundario">
+      <ul>
+        <li><a href="home.html">Home</a></li>        
+        <li><a href="catalogo.html">Catálogos</a></li>
+        <li><a href="consumiveis.html">Consumíveis</a></li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
+    </div> 
+
+<!-- Catálogo 2025 -->
+
+<div class="barra-container">
+  <h2 class="barra-titulo">Catálogo Eletrodos 2025</h2>    
+</div>
+
+    <!--Seção catálogo-->
+
+    <section class="catalogo-secao">
+  <img src="fotos/eletrodo-aco-inox.png" alt="banner" class="banner-img">
+  <h3>LISTA COMPLETA DE CONSUMÍVEIS DE SOLDAGEM</h3>
+  <h2>ELETRODOS</h2>
+  <ul>
+    <li>BÖHLER FOX AK 6</li>
+    <li>BÖHLER FOX 6010</li>
+    <li>BÖHLER FOX 6013</li>
+    <li>BÖHLER FOX 7018</li>
+    <li>BOHLER FOX CEL/Br</li>
+    <li>BOHLER FOX UNA</li>
+    <li>BOHLER FOX EV 50</li>
+    <li>BPHLER FOX HL 180 Ti</li>
+    <li>BOHLER FOX NiCu</li>
+    <li>BOHLER FOX NiCuCr</li>
+    <li>BOHLER FOX EV 65</li>
+    <li>BOHLER FOX EV 70</li>
+    <li>BOHLER FOX EV 70 Mo</li>
+    <li>UTP 6018</li>
+    <li>BOHLER FOV EV 85</li>
+    <li>UTP 6020</li>
+    <li>UTP 6030</li>
+    <li>BOHLER FOX 2,5 Ni</li>
+    <li>BOHLER FOX DMO Kb-B</li>
+    <li>BOHLER FOX DCMS Kb-B</li>
+    <li>Phoenix Chromo 1</li>
+    <li>BOHLER FOX CM 2 KS</li>
+    <li>Phoenix SH Chromo 2 KS</li>
+    <li>BOHLER FOX CM 5 Kb-B</li>
+    <li>BOHLER FOX CM 9 Kb-B</li>
+    <li>Thermanit Chromo 9V</li>
+    <li>Phoenix SH Schwarz 3 KNi</li>
+    <li>Phoenix SH Kupfer 3 KC</li>
+    <li>Phoenix Chromo 2V</li>
+    <li>Phoenix SH Ni 2 K 80</li>
+    <li>UTP 68 U</li>
+    <li>UPT 68 LC</li>
+    <li>BOHLER FOX 308 L-17</li>
+    <li>BOHLER FOX EAS 2 VD</li>
+    <li>UTP 68 U</li>
+    <li>UTP 68 LC</li>
+    <li>UTP 68 Mo</li>
+    <li>UTP 68 MoLC</li>
+    <li>BOHLER FOX 316 L-17</li>
+    <li>BOHLER FOX EAS 4 M VD</li>
+    <li>UTP 687 MoLC</li>
+    <li>UTP 682</li>
+    <li>UTP 682 LC</li>
+    <li>BOHLER 309 L-17</li>
+    <li>UTP 653</li>
+    <li>UTP 653 LC</li>
+    <li>UTP 68 H</li>
+    <li>UTP 652</li>
+    <li>UTP 6824 Nb</li>
+    <li>UTP 66 S</li>
+    <li>BOHLER FOX KW 10</li>
+    <li>BOHLER FOX CN/13/4 Supra</li>
+    <li>BOHLER FOX SKWA</li>
+    <li>BOHLER FOX SKWAM</li>
+    <li>BOHLER FOX CN 20/25 M A</li>
+    <li>BOHLER FOX CN 22/9 N</li>
+    <li>BOHLER FOX CN 26/10 N</li>
+    <li>Thermanit 25/09 CuT</li>
+    <li>UTP 80 Ni</li>
+    <li>UTP 80 M</li>
+    <li>UTP 68 HH</li>
+    <li>UTP 7015</li>
+    <li>UTP 7015 Mo</li>
+    <li>UTP 704 Kb</li>
+    <li>UTP 776 Kb</li>
+    <li>UTP 6170 Co</li>
+    <li>UTP 6222 Mo</li>
+    <li>UTP 068 HH</li>
+    <li>UTP 48</li>
+  </ul>
+</section>
+
+
+
+     <!--Rodapé-->
+
+    <!--Bloco esquerdo: logotipo e endereco-->
+    
+<footer class="rodape">  
+  <div class="coluna coluna-esquerda">
+    <div class="logo-endereco">
+      <img src="fotos/logo-gll-branco.png" height="70px" width="70px" alt="logo" class="logo">
+        <div class="texto-endereco">
+          <p class="endereco-rodape">
+            Rua Latino Coelho, 636<br>
+            Bairro Estância Velha<br>
+            Canoas - RS<br>
+            CEP 92030-230
+          </p>
+          <p class="direitos">© 2025 - GLL CANTERLE SOLDAS LTDA - Todos os direitos reservados.</p>
+        </div>
+    </div>
+  </div>
+
+    <!-- Coluna 2: Links centralizados em coluna -->
+
+  <div class="coluna coluna-centro">
+    <ul class="links-rodape">
+      <li><a href="home.html">Home</a></li>      
+      <li><a href="catalogo.html">Catálogos</a></li>
+      <li><a href="consumiveis.html">Consumíveis</a></li>
+      <li><a href="contato.html">Contato</a></li>
+    </ul>
+  </div>
+
+    <!-- Coluna 3: (vazia para equilíbrio ou futuros ícones) -->
+     
+  <div class="coluna coluna-direita"></div>
+</footer>
+  
+    <!-- Botão flutuante do WhatsApp com texto -->
+<a href="https://api.whatsapp.com/send?phone=5551999730661"class="whatsapp-float" target="_blank">
+  <span class="whatsapp-text">Fale Conosco</span>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
+</a>
+ <script src="script.js"></script>
+</body>
+</html>

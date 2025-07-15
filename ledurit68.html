@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LEDURIT 68</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    * { 
+      margin: 0; 
+      padding: 0;
+       box-sizing: border-box;
+       }
+    body {
+      background-color: #e7e8ea;
+      font-family: Arial, sans-serif;
+      width: 100%;
+    }
+    header {
+      background-color: rgba(239, 236, 245, 0.7);
+      color: #aaaaaa;
+      padding: 10px 20px;
+      height: 100px;
+    }
+    .topo-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 50px;
+    }
+    .contatos { font-size: 16px; padding-top: 20px; }
+    .redes a img {
+      width: 40px;
+      margin-left: 10px;
+      padding-top: 20px;
+      vertical-align: middle;
+    }
+    .logo { margin: 40px 10px 10px 10px;
+       border-radius: 15px;
+        height: 120px;
+         width: 200px;
+         }
+    .menu-secundario {
+      background-color: #004080;
+      padding: 30px 0;
+      height: 80px;
+      text-align: center;
+    }
+    .menu-secundario ul {
+      list-style: none;
+      display: inline-flex;
+      gap: 40px;
+    }
+    .menu-secundario ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      font-size: 20px;
+      padding: 40px;
+    }
+    .menu-secundario ul li a:hover { color: #ffcc00; }
+    .barra-container {
+      background-color: #d9d9d9;
+      padding: 20px 40px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .barra-titulo { font-size: 1.8rem; color: #ffffff; }
+    .container {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+      padding: 20px;
+    }
+
+    /*Estilo da Ficha Técnica*/
+
+  .container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 30px;
+  padding: 30px;
+  flex-wrap: wrap;
+}
+
+.imagem img {
+  max-width: 300px;
+  height: auto;
+  border-radius: 8px;
+}
+
+.quadro-ficha-tecnica {
+  background-color: #f8f9fa;
+  border: 1px solid #ccc;
+  border-left: 5px solid #007bff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  max-width: 700px;
+}
+
+.quadro-ficha-tecnica h3 {
+  color: #007bff;
+  font-size: 22px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 6px;
+}
+
+.quadro-ficha-tecnica ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.quadro-ficha-tecnica li {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.quadro-ficha-tecnica li strong {
+  display: inline-block;
+  width: 200px;
+  color: #333;
+}
+
+.linha-unica {
+  background-color: #2e2d2d53; 
+  white-space: nowrap;
+  margin-top: 20px;
+}
+
+.table-border {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+
+.table-border th,
+.table-border td {
+  border: 1px solid #999;
+  padding: 8px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 14px;
+}
+
+.table-border th {
+  background-color: #f2f2f2;
+}
+
+.nota {
+  text-align: left;
+  font-size: 13px;
+  padding: 10px;
+  word-wrap: break-word;
+  line-height: 1.4;
+}
+    
+        /*Estilo do rodapé*/
+    .rodape {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 40px;
+      background-color: #004080;
+      padding: 40px 60px;
+      color: white;
+    }
+    .coluna {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .coluna-esquerda { align-items: flex-start; }
+    .coluna-direita { align-items: flex-end; }
+    .logo-endereco { display: flex; gap: 20px; }
+    .texto-endereco { color: #ffffff; display: flex; flex-direction: column; }
+    .endereco-rodape { margin: 0; font-size: 1.4rem; line-height: 1.5; }
+    .links-rodape {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+    .links-rodape li a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1.4rem;
+    }
+    .links-rodape li a:hover { color: #ffcc00; }
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25d366;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 30px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+      z-index: 1000;
+    }
+    .whatsapp-icon { width: 24px; height: 24px; margin-left: 10px; }
+    .whatsapp-text { font-size: 16px; }
+    .direitos { color: #ffffff; margin-top: 40px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="topo-container">
+    <img src="fotos/logo-gll-branco.png" alt="logo" class="logo">
+    <div class="contatos">
+      <img src="https://cdn-icons-png.flaticon.com/512/597/597177.png" width="20"> (51) 99612-5242
+      <img src="https://cdn-icons-png.flaticon.com/512/597/597177.png" width="20"> (51) 99973-0661
+      <img src="fotos/email-gll.png" width="20"> gllsoldas@gllsoldas.net
+    </div>
+    <div class="redes">
+      <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"></a>
+      <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"></a>
+      <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png"></a>
+    </div>
+  </div>
+</header>
+
+<div class="menu-secundario">
+  <ul>
+    <li><a href="home.html">Home</a></li>
+    <li><a href="catalogo.html">Catálogos</a></li>
+    <li><a href="consumiveis.html">Consumíveis</a></li>
+    <li><a href="contato.html">Contato</a></li>
+  </ul>
+</div>
+
+<div class="barra-container">
+  <h2 class="barra-titulo">ARAME TUBULAR UTP AF LEDURIT 68</h2>
+    <p>Arame tubular metal cored auto protegido</p>
+</div>
+
+<div class="container">
+  <div class="imagem">
+    <img src="fotos/eletrodo-revestido-bohler.png" alt="Produto">
+  </div>
+  <div class="quadro-ficha-tecnica">
+    <h3>Ficha Técnica</h3>
+    <ul>
+      <li class="linha-unica"><strong>Classificação:</strong></li>
+        <li>
+          <table class="table-border">
+            <tbody>
+              <tr>
+                <td>DIN 8555</td>
+              </tr>
+              <tr>
+                <td>MF 10-GF-65-GR</td>
+              </tr>
+            </tbody>
+          </table>
+        </li>        
+      <li class="linha-unica"><strong>Características:</strong></li>
+        <li>Arame tubular ligado ao Cr e Nb. Utilizado para revestimentos resistentes ao desgaste em aço carbono, baixa liga e aço fundido, submetidos a médios impactos e severa abrasão. Recomenda-se o amanteigamento com o UTP AF A7 em materiais de base de difícil soldagem.</li>
+      <li class="linha-unica"><strong>Aplicações Típicas:</strong></li>
+        <li>Principais aplicações são minerações, fábricas de cimento, pedreiras, construtoras, siderúrgicas e usinas de açúcar. Em revestimentos protetores antidesgaste de lâminas, dentes, bordas de caçambas de carregadeiras, escarificadores, pás de misturadores, raspadeiras, moinhos de rolos ou de martelos entre outros.</li>
+
+      <li class="linha-unica"><strong>Composição Química:</strong></li>
+        <li>        
+          <table class="table-border">
+            <thead>
+              <tr>
+                <th></th>
+                <th>C</th>
+                <th>Si</th>
+                <th>Mn</th>
+                <th>Cr</t>h
+                <th>Nb</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>% peso</td>
+                <td>3,00 – 5,00</td>
+                <td>0,50 – 1,60</td>
+                <td>0,20 – 1,00</td>
+                <td>18,50 – 20,00</td>
+                <td>2,00 - 4,00</td>
+              </tr>
+            </tbody>
+        </table>
+      </li>
+
+      <li class="linha-unica"><strong>Dureza do metal depositado:</strong></li>      
+        <li>
+          <table class="table-border">
+            <tbody>
+              <tr>
+                <td> 55-60 HRC</td>
+              </tr>
+            </tbody>            
+          </table>
+        </li> 
+
+      <li class="linha-unica"><strong>Dados Operacionais:</strong></li>
+        <li>
+          <table class="table-border">
+            <thead>
+              <tr>
+                <th></th> <!-- Coluna da seta -->
+                <th>Polaridade</th>
+                <th>Gás de proteção</th>
+                <th>Diâmetro<br>mm</th>
+                <th>Corrente A</th>
+                <th>Tensão V</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><img src="fotos/imagem-setas.png" alt="Setas" width="80"></td>
+                  <td>CC+</td>
+                  <td>Não é necessário<br>(Autoprotegido)</td>
+                  <td>1,6<br>2,4<br>2,8*<br>3,2*</td>
+                  <td>150 - 350<br>250 - 450<br>300 - 500<br>450 - 550</td>
+                  <td>22 - 29<br>24 - 30<br>26 - 32<br>30 - 32</td>
+              </tr>
+              <tr>
+                <td colspan="6" style="text-align: left; font-style: arial sans-serif;">*Sob consulta</td>
+              </tr>      
+            </tbody>
+          </table>
+        </li>      
+    </ul>
+  </div>
+</div>
+
+<footer class="rodape">
+  <div class="coluna coluna-esquerda">
+    <div class="logo-endereco">
+      <img src="fotos/logo-gll-branco.png" class="logo">
+      <div class="texto-endereco">
+        <p class="endereco-rodape">Rua Latino Coelho, 636<br>Bairro Estância Velha<br>Canoas - RS<br>CEP 92030-230</p>
+        <p class="direitos">© 2025 - GLL CANTERLE SOLDAS LTDA - Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </div>
+  <div class="coluna coluna-centro">
+    <ul class="links-rodape">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="catalogo.html">Catálogos</a></li>
+      <li><a href="consumiveis.html">Consumíveis</a></li>
+      <li><a href="contato.html">Contato</a></li>
+    </ul>
+  </div>
+  <div class="coluna coluna-direita"></div>
+</footer>
+
+<a href="https://api.whatsapp.com/send?phone=5551999730661" class="whatsapp-float" target="_blank">
+  <span class="whatsapp-text">Fale Conosco</span>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
+</a>
+
+</body>
+</html>

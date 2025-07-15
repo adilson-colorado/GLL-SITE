@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>A Empresa – GLL CANTERLE SOLDAS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET & BASE ===== */
+    *,*::before,*::after {
+      box-sizing:border-box;
+      margin:0;
+      padding:0
+    }
+
+    html {
+      scroll-behavior:smooth
+    }
+
+    body {
+      font-family:'Roboto',sans-serif;
+      line-height:1.6;
+      color:#333;
+      background:#fff;
+      overflow-x:hidden
+    }
+
+    img {
+      max-width:100%;
+      display:block;
+      height:auto
+    }
+
+    a {
+      text-decoration:none
+    }
+
+    /* ===== VARIABLES ===== */
+    :root{
+      --azul:#004080;
+      --azul-escuro:#003366;
+      --cinza-bg:#f2f2f2;
+      --dourado:#bfa046;
+    }
+
+    /* ===== LAYOUT ===== */
+    .container {
+      width:90%;
+      max-width:1200px;
+      margin-inline:auto
+    }
+
+    /* ===== HEADER ===== */
+    header.header {
+      background:#f2f2f2;
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:160px;
+      padding-inline:24px
+    }
+
+    .header-inner {
+      display:flex;
+      align-items:center;
+      gap:24px;
+      width:100%;
+      max-width:1200px
+    }
+
+    .logo-img img {
+      height:120px;
+      width:200px;
+      margin-left: 10px
+    }
+
+    .logo-texto {
+      flex:1;
+      text-align:center;
+      color:#004080;
+      font-size:2rem;
+      font-weight:700;
+      letter-spacing:.04em
+    }
+
+    /* ===== NAVBAR ===== */
+    nav.nav { 
+      background:#004080;
+      box-shadow:0 2px 4px rgba(0,0,0,.06)
+    }
+
+    .nav-inner {
+      height:70px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:48px
+    }
+
+    .nav-inner a {
+      color:#ffffff;
+      font-size:1.1rem;
+      font-weight:500;
+      transition:color .25s
+    }
+
+    .nav-inner a:hover {
+      color:var(--dourado)
+    }
+
+    /* ===== CARROSSEL ===== */
+    .carrossel-container {
+      position:relative;
+      width:100%;
+      height:420px;
+      overflow:hidden
+    }
+
+    .carrossel-slide {display:flex;transition:transform .5s ease-in-out;height:100%}
+    .carrossel-item{flex:0 0 100%;height:100%}
+    .carrossel-item img{width:100%;height:100%;object-fit:cover}
+    .carrossel-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.45);color:#fff;font-size:2rem;border:none;padding:8px 14px;cursor:pointer;z-index:5}
+    .carrossel-btn.prev{left:12px}.carrossel-btn.next{right:12px}
+
+    /* ===== SEÇÃO HISTÓRIA & MVV ===== */
+    .secao-historia-mvv{padding:60px 20px}.secao-historia-mvv h2{font-size:2.2rem;color:var(--azul-escuro);text-align:center;margin-bottom:24px}
+    .secao-historia-mvv h3{margin-top:32px;font-size:1.4rem;color:#444}.secao-historia-mvv p{font-size:1.1rem;margin-bottom:16px}
+    .cards-container-missao{display:flex;flex-wrap:wrap;gap:24px;margin-top:48px}
+    .card-missao{flex:1 1 300px;background:#bfa046;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.08);padding:28px;text-align:center;transition:transform .3s}
+    .card-missao:hover{transform:translateY(-6px)}
+    .card-missao h3{color:#004080;font-size:1.5rem;margin-bottom:12px}
+
+    hr.separador{border:none;height:2px;background:var(--azul);max-width:1200px;margin:48px auto;border-radius:1px}
+
+    /* ===== GALERIA ===== */
+    .galeria{padding-bottom:60px}
+    .galeria h2{text-align:center;font-size:2rem;color:var(--azul-escuro);margin:40px 0}
+    .galeria-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;padding-inline:20px}
+    .item-galeria{display:flex;flex-direction:column;align-items:center}
+    .item-galeria img{width:100%;height:260px;object-fit:cover;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,.15);cursor:pointer;transition:transform .3s}
+    .item-galeria img:hover{transform:scale(1.03)}
+    .legenda{margin:10px 0 0;font-size:.95rem;color:#111;text-align:center}
+
+    /* ===== LIGHTBOX ===== */
+    #lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:9999;align-items:center;justify-content:center;flex-direction:column;padding:20px}
+    #lightbox img{max-width:90%;max-height:80vh;border-radius:12px}
+    #lightbox p{color:#fff;margin-top:12px;font-size:1.2rem;text-align:center}
+
+    /* ===== FOOTER ===== */
+    footer.footer{background:var(--azul);color:#fff;text-align:center;padding:32px 20px;font-size:.95rem}
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo-img">
+        <img src="fotos/fundo-branco-gll.png" alt="Logo GLL Soldas">
+      </div>
+      <div class="logo-texto">GLL CANTERLE SOLDAS</div>
+    </div>
+  </header>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="nav">
+    <div class="nav-inner container">
+      <a href="#corporativo-home.html">A Empresa</a>
+      <a href="#corporativo-catalogo.html">Catálogos</a>
+      <a href="#corporativo.consumíveis.html">Consumíveis</a>
+      <a href="#corporativo-contato.html">Contato</a>
+    </div>
+  </nav>
+
+  <!-- ===== CARROSSEL ===== -->
+  <div class="carrossel-container">
+    <div class="carrossel-slide">
+      <div class="carrossel-item"><img src="fotos/banner-fundo-gll.png" alt="Banner GLL"></div>
+      <div class="carrossel-item"><img src="script.js/fotosjs/script-soldador2.png" alt="Soldador 2"></div>
+      <div class="carrossel-item"><img src="script.js/fotosjs/script-soldador3.png" alt="Soldador 3"></div>
+    </div>
+    <button class="carrossel-btn prev">&#10094;</button>
+    <button class="carrossel-btn next">&#10095;</button>
+  </div>
+
+  <!-- ===== HISTÓRIA & MVV ===== -->
+  <section class="secao-historia-mvv container">
+    <h2>NOSSA HISTÓRIA</h2>
+    <p>Em 2016, a GLL CANTERLE SOLDAS LTDA iniciava suas atividades no mercado de soldagem, trazendo uma nova opção de produtos com toda a assistência técnica, eficiência comercial e administrativa, tendo como objetivo principal buscar a parceria de seus clientes e consumidores, sendo uma nova opção confiável no mercado de consumíveis no fornecimento e distribuição de eletrodos para solda.</p>
+    <p>Em 10 anos de atividade, a GLL CANTERLE SOLDAS LTDA busca atrair novos clientes, com muito trabalho e dedicação, sempre com o foco de conquistar o mercado de consumíveis para soldagem com a qualidade dos produtos Böhler Voestalpine e DayliWork Uniformes, sendo uma empresa ágil e confiável no atendimento, mostrando ser um fornecedor que valoriza e consolida seus clientes.</p>
+    <h3>GLL CANTERLE SOLDAS LTDA</h3>
+    <p>gllsoldas@gllsoldas.net</p>
+
+    <hr class="separador">
+
+    <div class="cards-container-missao">
+      <div class="card-missao">
+        <h3>MISSÃO</h3>
+        <p>Entregar soluções em soldagem com qualidade, segurança e excelência técnica, promovendo durabilidade e eficiência para nossos clientes. Nosso compromisso é contribuir com o crescimento de parceiros e setores industriais por meio de serviços especializados e atendimento personalizado.</p>
+      </div>
+      <div class="card-missao">
+        <h3>VISÃO</h3>
+        <p>Ser reconhecida nacionalmente como referência em soldagem industrial e serviços técnicos, destacando-se pela inovação, responsabilidade e confiança no relacionamento com clientes, colaboradores e fornecedores.</p>
+      </div>
+      <div class="card-missao">
+        <h3>VALORES</h3>
+        <p>Compromisso com a qualidade, buscando sempre os melhores resultados, com foco em excelência técnica. Ética e transparência, cultivando relações honestas com os clientes.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="separador">
+
+  <!-- ===== GALERIA ===== -->
+  <section class="galeria">
+    <h2>GALERIA DE IMAGENS</h2>
+    <div class="galeria-grid container">
+      <div class="item-galeria"><img src="fotos/Expediçao GLL.jpeg" alt="Expedição GLL" onclick="abrirLightbox(this)"><span class="legenda">EXPEDIÇÃO</span></div>
+      <div class="item-galeria"><img src="fotos/Expedição 2 GLL.jpeg" alt="Expedição 2 GLL" onclick="abrirLightbox(this)"><span class="legenda">EXPEDIÇÃO</span></div>
+      <div class="item-galeria"><img src="fotos/Expedição 3 GLL.jpeg" alt="Expedição 3 GLL" onclick="abrirLightbox(this)"><span class="legenda">EXPEDIÇÃO</span></div>
+      <div class="item-galeria"><img src="fotos/Imagem interior do pavilhão.jpeg" alt="Interior do Pavilhão" onclick="abrirLightbox(this)"><span class="legenda">SALA DA DIREÇÃO</span></div>
+      <div class="item-galeria"><img src="fotos/Imagem entrada do pavilhão.jpeg" alt="Entrada do Pavilhão" onclick="abrirLightbox(this)"><span class="legenda">SEDE GLL SOLDAS</span></div>
+      <div class="item-galeria"><img src="fotos/Recepção GLL.jpeg" alt="Recepção GLL" onclick="abrirLightbox(this)"><span class="legenda">SEDE GLL SOLDAS</span></div>
+    </div>
+  </section>
+
+  <!-- ===== LIGHTBOX ===== -->
+  <div id="lightbox" onclick="fecharLightbox()">
+    <img id="lightbox-img" src="" alt="Imagem em destaque">
+    <p id="lightbox-caption"></p>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 GLL CANTERLE SOLDAS LTDA. Todos os direitos reservados.</p>
+      <p>Contato: (51) 99612-5242 | (51) 99973-0661 | gllsoldas@gllsoldas.net</p>
+    </div>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script>
+    /* Carrossel */
+    const slide=document.querySelector('.carrossel-slide');
+    const items=document.querySelectorAll('.carrossel-item');
+    const prevBtn=document.querySelector('.prev');
+    const nextBtn=document.querySelector('.next');
+    let index=0;const total=items.length;
+    function updateSlide(){slide.style.transform=`translateX(-${index*100}%)`}
+    nextBtn.addEventListener('click',()=>{index=(index+1)%total;updateSlide()});
+    prevBtn.addEventListener('click',()=>{index=(index-1+total)%total;updateSlide()});
+    setInterval(()=>{index=(index+1)%total;updateSlide()},7000);
+
+    /* Lightbox */
+    function abrirLightbox(imagem){const lightbox=document.getElementById('lightbox');const lightboxImg=document.getElementById('lightbox-img');const caption=document.getElementById('lightbox-caption');lightboxImg.src=imagem.src;caption.innerText=imagem.alt;lightbox.style.display='flex'}
+    function fecharLightbox(){document.getElementById('lightbox').style.display='none'}
+  </script>
+</body>
+</html>
